@@ -34,16 +34,14 @@ public class MainActivity extends AppCompatActivity {
         mDots = new ArrayList<>();
         mCount = 3;
         for (int i = 0; i < mCount; i++) {
+            //下面两句必须放在for里面
             View layoutView = layoutInflater.inflate(R.layout.one, null);
             View dotView = layoutInflater.inflate(R.layout.dot, null);
-            mLayouts.add(layoutView);
-            mDots.add(dotView);
 
             TextView textView = (TextView)layoutView.findViewById(R.id.tv);
             textView.setText("我是TextView"+(i+1));
             Button button =(Button)layoutView.findViewById(R.id.btn);
             button.setText("我是Button"+(i+1));
-
             if (i == 0) {
                 dotView.setBackgroundResource(R.drawable.dot_select);
             } else {
@@ -54,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
                             ViewGroup.LayoutParams.WRAP_CONTENT));
             layoutParams.setMargins(20, 0, 20, 0);
             viewGroup.addView(dotView, layoutParams);
+
+            mLayouts.add(layoutView);
+            mDots.add(dotView);
+
         }
 
         mViewPager.setAdapter(new MyViewPagerAdapter(mLayouts));
